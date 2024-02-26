@@ -36,7 +36,7 @@ public class Server extends Thread{
         }
     }
 
-    interface Callback {
+    public interface Callback {
         boolean onConnection(Socket socket);
     }
 }

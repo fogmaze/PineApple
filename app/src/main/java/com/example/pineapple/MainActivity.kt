@@ -9,7 +9,10 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PowerManager
+import android.os.PowerManager.WakeLock
 import android.util.Log
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var mImageView : ImageView? = null
     private var mTextView : TextView? = null
     private var mServer : Server? = null
+    private var wakeLock : PowerManager.WakeLock? = null
 
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -87,15 +91,35 @@ class MainActivity : AppCompatActivity() {
             true
         },7890)
         Thread(mServer).start()*/
-    }
-
-    override fun onStart() {
-        super.onStart()
         mServer = Server( {
             Thread(SocketHandler(it)).start()
             true
         },7890)
         Thread(mServer).start()
 
+        val powerManager = getSystemService(POWER_SERVICE) as PowerManager
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "PineApple::MyWakelockTag")
+        wakeLock?.acquire(10*60*1000L /*10 minutes*/)
+
+        val params = window.attributes
+        params.screenBrightness = 0.0f
+        window.attributes = params
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("main","onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("main","onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("main", "onPause")
+    }
+
+
 }

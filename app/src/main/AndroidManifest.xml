@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -36,6 +37,7 @@
             android:exported="false"
             android:foregroundServiceType="dataSync"
             android:enabled="true"/>
+
         <service android:name=".privacy.PrivacyService"
             android:exported="false"
             android:foregroundServiceType="camera"
