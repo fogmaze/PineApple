@@ -1,0 +1,2 @@
+ninja: Entering directory `/home/changer/AndroidStudioProjects/PineApple/opencv/.cxx/Debug/406u156x/x86_64'
+ninja: no work to do.
