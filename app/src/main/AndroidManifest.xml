@@ -33,10 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".MainService"
-            android:exported="false"
-            android:foregroundServiceType="dataSync"
-            android:enabled="true"/>
 
         <service android:name=".privacy.PrivacyService"
             android:exported="false"

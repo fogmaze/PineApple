@@ -1,0 +1,4 @@
+/usr/bin/ninja \
+  -C \
+  /home/changer/AndroidStudioProjects/PineApple/opencv/.cxx/Debug/406u156x/armeabi-v7a \
+  opencv_jni_shared

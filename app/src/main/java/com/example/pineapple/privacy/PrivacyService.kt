@@ -10,8 +10,10 @@ import android.os.IBinder
 import android.util.Log
 import android.util.Size
 import androidx.core.app.NotificationCompat
+import com.example.pineapple.utils.CameraHolder
+import com.example.pineapple.utils.ImageProcess
 import com.example.pineapple.R
-import com.example.pineapple.Server
+import com.example.pineapple.utils.Server
 import org.opencv.android.OpenCVLoader
 import org.opencv.core.Core
 import org.opencv.core.Mat
@@ -159,7 +161,7 @@ class PrivacyService : Service() {
             mSocket = socket
             false
         }
-        mServer = Server(onConnectCallBack,7891)
+        mServer = Server(onConnectCallBack, 7891)
         Thread(mServer).start()
         mCameraHolder = CameraHolder(
             this,

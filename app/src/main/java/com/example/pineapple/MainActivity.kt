@@ -3,20 +3,17 @@ package com.example.pineapple
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PowerManager
-import android.os.PowerManager.WakeLock
 import android.util.Log
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.example.pineapple.privacy.PrivacyService
+import com.example.pineapple.utils.Server
+import com.example.pineapple.utils.Utils
 import org.opencv.android.OpenCVLoader
 import java.io.IOException
 import java.net.Socket
@@ -91,10 +88,10 @@ class MainActivity : AppCompatActivity() {
             true
         },7890)
         Thread(mServer).start()*/
-        mServer = Server( {
+        mServer = Server({
             Thread(SocketHandler(it)).start()
             true
-        },7890)
+        }, 7890)
         Thread(mServer).start()
 
         val powerManager = getSystemService(POWER_SERVICE) as PowerManager
